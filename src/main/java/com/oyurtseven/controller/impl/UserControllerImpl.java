@@ -1,6 +1,8 @@
 package com.oyurtseven.controller.impl;
 
 import com.oyurtseven.controller.IUserController;
+import com.oyurtseven.dto.DtoUser;
+import com.oyurtseven.dto.DtoUserIU;
 import com.oyurtseven.model.User;
 import com.oyurtseven.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +19,19 @@ public class UserControllerImpl implements IUserController {
 
     @PostMapping(path = "/save")
     @Override
-    public User save(@RequestBody User user) {
-        return userService.save(user);
+    public DtoUser save(@RequestBody DtoUserIU dtoUserIU) {
+        return userService.save(dtoUserIU);
     }
 
     @GetMapping(path = "/all")
     @Override
-    public List<User> getAllUserList() {
+    public List<DtoUser> getAllUserList() {
         return userService.getAllUserList();
     }
 
     @GetMapping(path = "/{id}")
     @Override
-    public User getUserById(@PathVariable int id) {
+    public DtoUser getUserById(@PathVariable int id) {
         return userService.getUserById(id);
     }
 }
