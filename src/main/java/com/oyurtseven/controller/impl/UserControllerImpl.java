@@ -5,6 +5,7 @@ import com.oyurtseven.dto.DtoUser;
 import com.oyurtseven.dto.DtoUserIU;
 import com.oyurtseven.model.User;
 import com.oyurtseven.services.IUserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class UserControllerImpl implements IUserController {
 
     @PostMapping(path = "/save")
     @Override
-    public DtoUser save(@RequestBody DtoUserIU dtoUserIU) {
+    public DtoUser save(@RequestBody @Valid DtoUserIU dtoUserIU) {
         return userService.save(dtoUserIU);
     }
 

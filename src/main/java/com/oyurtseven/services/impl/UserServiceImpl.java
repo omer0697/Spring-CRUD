@@ -9,6 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +25,15 @@ public class UserServiceImpl implements IUserService{
     public DtoUser save(DtoUserIU dtoUserIU) {
         DtoUser response = new DtoUser();
         User user = new User();
+
         BeanUtils.copyProperties(dtoUserIU,user);
-        User dbStudent = userRepository.save(user);
-        BeanUtils.copyProperties(dbStudent,response);
+        User savedUser = userRepository.save(user);
+        BeanUtils.copyProperties(savedUser,response);
+        // Copy saved entity back to response DTO
+
         return response;
     }
+
 
     @Override
     public List<DtoUser> getAllUserList() {

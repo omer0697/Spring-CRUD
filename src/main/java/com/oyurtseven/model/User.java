@@ -3,14 +3,18 @@ package com.oyurtseven.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "\"user\"") // Escaping the reserved keyword
-@Data
+@Table(name = "\"user\"")
+@Data // Lombok annotation to generate getters, setters, toString, equals, and hashCode
+@Getter
+@Setter
 public class User {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -20,7 +24,8 @@ public class User {
     @Column(name = "last_name", nullable = true)
     private String lastName;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_date", nullable = true)
     private Date birthDate;
 }
+
